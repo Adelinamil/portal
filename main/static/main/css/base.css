@@ -1,0 +1,73 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    position: relative;
+}
+
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer {
+    margin-top: auto;
+}
+
+.create-violation {
+    max-width: 550px;
+}
+
+.alert {
+    max-width: 800px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.text-danger, .invalid-feedback {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+@media (max-width: 768px) {
+    .violations-text {
+        font-size: 12px;
+    }
+
+    .create-violation {
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 400px) {
+    .violations-text {
+        font-size: 11px;
+    }
+
+    .create-violation {
+        max-width: 350px;
+    }
+}

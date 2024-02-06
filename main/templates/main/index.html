@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div class="main container">
+        <h2 class="text-center mb-4">Добро пожаловать на портал Нарушениям.Нет</h2>
+        <p class="text-center">Мы – сообщество активных и ответственных граждан, объединенных общей целью –</p>
+        <div class="mt-4 mx-auto text-center">
+            <a href="{% url 'main:create_violation' %}" class="btn btn-primary bg-gradient">Подать заявление</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'users/css/base.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container login-form">
+        <h3 class="text-center mb-4">Авторизация</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <div class="mb-3">
+                <small class="text-danger fw-bold">{{ error }}</small>
+            </div>
+            <div class="btn-group w-100" role="group" aria-label="Login group">
+                <button type="submit" class="btn btn-primary bg-gradient">Войти</button>
+                <a href="{% url 'users:register' %}" class="btn btn-primary bg-gradient">Зарегистрироваться</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

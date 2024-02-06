@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5 table-responsive-sm">
+        <table id="violationsTable" class="table table-borderless table-hover violations-text">
+            <caption>Всего заявлений: {{ violations_count }}</caption>
+            <thead class="bg-primary bg-gradient text-white">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col">Регистрационный номер</th>
+                <th scope="col">Статус</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for violation in violations %}
+                <tr data-bs-toggle="modal"
+                    data-bs-target="#violationDesc"
+                    data-id="{{ violation.id }}"
+                    style="cursor: pointer">
+                    <th scope="row">{{ violation.id }}</th>
+                    <td>{{ violation.created }}</td>
+                    <td>{{ violation.vehicle_number }}</td>
+                    <td>{{ violation.get_status_display }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="violationDesc" tabindex="-1" aria-labelledby="violationText" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="violationText"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="violationBody" class="modal-body">
+                    <p id="violationInfo"></p>
+                    <div id="violationUrl" style="display: none">
+                        Доказательства: <a id="linkViolationUrl" href="#" target="_blank">клик</a>
+                    </div>
+                    <hr>
+                    <p id="violationDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'main/js/violation.js' %}"></script>
+{% endblock %}

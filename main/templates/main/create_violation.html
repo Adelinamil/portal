@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <form id="createViolation" method="post" enctype="multipart/form-data" class="m-auto"
+          oninput="checkViolationForm()">
+        <div class="main container create-violation">
+            <h3 class="text-center mb-5">Заявление о нарушении</h3>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button id="saveViolationBtn" type="button" class="btn btn-primary bg-gradient w-100" data-bs-toggle="modal"
+                    data-bs-target="#submitModal">Отправить
+            </button>
+        </div>
+        <div class="modal fade" id="submitModal" aria-labelledby="submitModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="submitModalLabel">Создание заявления</h1>
+                    </div>
+                    <div class="modal-body">
+                        Вы уверены, что хотите подтвердить и отправить заявление о нарушении?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success bg-gradient">Да</button>
+                        <button type="button" class="btn btn-danger bg-gradient" data-bs-dismiss="modal">Нет</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block scripts %}
+    <script>
+        checkViolationForm(true);
+    </script>
+{% endblock %}
